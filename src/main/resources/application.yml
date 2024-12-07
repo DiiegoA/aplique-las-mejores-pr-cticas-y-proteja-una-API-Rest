@@ -1,0 +1,32 @@
+spring:
+  devtools:
+    livereload:
+      enabled: false
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:testdb}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    hibernate:
+      ddl-auto: validate # Hibernate validará que las tablas existan, pero no las creará ni modificará.
+    open-in-view: false  # Mejora el rendimiento desactivando sesiones abiertas en vistas
+    show-sql: false      # No muestra las consultas SQL en logs (puedes habilitarlo en desarrollo)
+    properties:
+      hibernate:
+        format_sql: true # Da formato legible a las consultas SQL
+
+  data:
+    web:
+      pageable:
+        page-parameter: pagina
+        size-parameter: tamano
+        sort-parameter: orden
+
+api:
+  security:
+    secret: ${SECRET_KEY:clave}
